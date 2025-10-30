@@ -12,6 +12,10 @@ from src.auth.router import register_fastapi_users_routes
 
 # from src.core.config import get_settings, Settings
 
+# from dotenv import load_dotenv
+# from pathlib import Path
+# load_dotenv(Path(__file__).parent.parent / ".env")
+
 
 app = FastAPI(
     app_name=settings.app_name,

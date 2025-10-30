@@ -11,7 +11,7 @@ from src.core.database import get_db
 from src.auth.user_manager import get_current_user, current_superuser
 
 router = APIRouter(
-    prefix="/dishes", tags=["Dishes"], dependencies=[Depends(get_current_user)]
+    prefix="/dishes", tags=["Dishes"], dependencies=[Depends(get_current_user)] 
 )
 
 

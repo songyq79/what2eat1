@@ -19,7 +19,6 @@ from fastapi_users.db import SQLAlchemyUserDatabase
 from src.core.config import settings
 from src.core.redis_db import get_auth_redis
 from src.auth.dependencies import get_user_db, get_access_token_db
-
 from src.auth.model import User, AccessToken
 
 # 根据需要使用单个SECRET，或者拆分成不同的
@@ -71,7 +70,7 @@ def get_redis_strategy(auth_redis: Redis = Depends(get_auth_redis)) -> RedisStra
 # 数据库认证后端
 database_auth_backend = AuthenticationBackend(
     name="Database Strategy",
-    transport=bearer_transport,
+    transport=cookie_transport,
     get_strategy=get_database_strategy,
 )
 
@@ -83,7 +82,9 @@ redis_auth_backend = AuthenticationBackend(
 )
 
 
-fastapi_users = FastAPIUsers[User, uuid.UUID](get_user_manager, [redis_auth_backend])
+fastapi_users = FastAPIUsers[User, uuid.UUID](
+    get_user_manager, [redis_auth_backend, database_auth_backend]
+)
 
 # 默认为获取当前激活用户
 get_current_user = fastapi_users.current_user(active=True)

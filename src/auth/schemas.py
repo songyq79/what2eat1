@@ -13,7 +13,7 @@ class UserRead(schemas.BaseUser[uuid.UUID]):
 
 
 class UserCreate(schemas.BaseUserCreate):
-    pass
+    name: str | None = Field(None, max_length=64)
 
 
 class UserUpdate(schemas.BaseUserUpdate):
