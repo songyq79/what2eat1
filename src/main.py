@@ -6,6 +6,7 @@ from src.lifespan import lifespan
 from src.core.exception import register_exception_handlers
 from src.dishes.router import router as dishes_router
 from src.collections.router import router as collections_router
+from src.weather.router import router as weather_router
 
 # FastAPI Users 路由引入
 from src.auth.user_manager import fastapi_users
@@ -36,6 +37,9 @@ app.include_router(dishes_router)
 
 # 引入收藏路由
 app.include_router(collections_router)
+
+# 引入天气路由
+app.include_router(weather_router)
 
 # 路由引入
 # @app.get("/")
