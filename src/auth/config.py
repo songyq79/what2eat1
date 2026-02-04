@@ -20,3 +20,7 @@ class AuthSettings(BaseSettings):
 
 
 auth_settings = AuthSettings()
+
+
+#以上代码实际使用的时候，auth_settings.redis_host   返回的是localhost
+#@computed_field  这个装饰器  auth_settings.auth.redis_utl  返回的是 redis://localhost:6379/0

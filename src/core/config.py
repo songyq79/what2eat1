@@ -1,7 +1,7 @@
 # /src/core/config.py
-from typing import Literal
+from typing import Literal  #是 Python 的「字面量类型」,用来限制一个变量只能取“指定的几个固定值”
 
-from pydantic import computed_field
+from pydantic import computed_field  #是 Pydantic v2 的装饰器,用来把一个 属性（property） 当成 模型字段
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -55,8 +55,8 @@ class Settings(BaseSettings):
         else:
             raise ValueError(f"Unsupported DB_TYPE: {self.db_type}")
 
-    @computed_field
-    @property
+    @computed_field   #
+    @property    #@property 是“实例方法 → 属性访问”的语法糖
     def engine_options(self) -> dict:
         """统一封装 engine options，供 create_async_engine 使用"""
         if self.db_type == "postgres":
