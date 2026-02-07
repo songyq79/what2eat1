@@ -6,6 +6,7 @@ from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from src.core.config import settings
 
 
+#代码是碁础仓库，规范数据库的写法。
 database_naming_convention = {
     "ix": "%(column_0_label)s_idx",
     "uq": "%(table_name)s_%(column_0_name)s_key",

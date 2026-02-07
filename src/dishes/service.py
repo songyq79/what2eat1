@@ -22,7 +22,7 @@ class DishService:
 
     async def create_dish(self, dish_data: DishCreate) -> DishResponse:
         """创建菜品，处理唯一约束冲突"""
-        data = dish_data.model_dump()
+        data = dish_data.model_dump() #model_dump()把 Pydantic 模型 转换成普通字典（dict）
         try:
             dish = await self.repository.create(data)
             return DishResponse.model_validate(dish)
